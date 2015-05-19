@@ -1,0 +1,21 @@
+extends layout_EN
+
+block content
+  div.well
+    table.notspaced
+      tr
+        td 
+          div User name : #{userName}
+    br
+    br
+    table.notspaced
+      tr
+        td
+      tr
+        each question, i in questions
+          tr
+            td 
+              a(href='/editQuestion?nr=' + i) 
+                div Question #{question.value.nr} : #{question.msg_En}
+            td
+      

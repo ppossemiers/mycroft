@@ -1,0 +1,24 @@
+body { padding: 25px;} 
+table { border-collapse: separate; border-spacing: 10px; }
+table.notspaced { border-collapse: separate; border-spacing: 1px; }
+.pointer {
+  	cursor:pointer;
+  	cursor:hand;
+}
+.padded-left-right {
+	padding-right:65px;
+	padding-left:15px;
+}
+.padded-under {padding-bottom:25px;}
+a:link {color:#000000;}
+a:visited {color:#000000;}
+
+textarea#consoleStyled {
+	width: 850px;
+	height: 100px;
+	border: 2px solid #cccccc;
+	padding: 15px;
+	font-family: Courier, monospace;
+	color: green;
+	background-color: white;
+}

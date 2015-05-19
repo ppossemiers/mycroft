@@ -1,0 +1,44 @@
+extends layout_NL
+
+block content
+  div.well
+    form(action='doLogin' method='post')
+      table
+        tr
+          td
+            label Mailadres :
+          td
+            input(type='text' name='email' size=35)
+        tr
+          td
+            label Paswoord :
+          td
+            input(type='password' name='password' size=35)
+        tr
+          td
+            label Test :
+          td
+            input(type='text' name='test' size=35)
+        tr
+          td
+          td(align='right')
+            input(type='image', src='/images/eval.png', name='submit')
+    br
+    br
+    div Nog geen paswoord of paswoord vergeten? 
+    div Vul uw AP email adres in en klik op de knop.
+    br
+    br
+
+    form(action='doCreatePassword' method='post')
+      table
+        tr
+          td
+            label.padded-right Mailadres :
+          td
+            input(type='text' name='email' size=35)
+        tr
+          td
+          td(align='right')
+            input(type='image', src='/images/eval.png', name='submit')
+  

@@ -1,0 +1,29 @@
+extends layout_EN
+
+block content
+  div.well
+    table
+      tr
+        td
+          div Question : #{questionNr} / #{amtQuestions}
+          div Evaluations : #{evals} / #{maxEvals}
+      tr
+        td(align='right')
+          a(href='/question?nr=' + (questionNr-2) + '&eval=0')
+            img(src='/images/previous.png', title='Previous')
+          a(href='/question?nr=' + questionNr + '&eval=0')
+            img(src='/images/next.png', title='Next')
+      tr
+        td
+          textarea.code#codeEditor #{code}
+      tr
+        td
+          textarea.console#consoleStyled(readonly) #{console}
+      tr
+        td(align='right')
+          a(href='/question?nr=' + (questionNr-1) + '&eval=0')
+            img(src='/images/reload.png', title='Reload')
+          img.pointer(onclick='mycroft.eval(' + (questionNr-1) + ');', src='/images/eval.png', title='Evaluate')
+  script(src='/javascripts/codemirror-compressed.js')
+  script(src='/javascripts/mycroft.js')
+

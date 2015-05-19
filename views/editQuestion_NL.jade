@@ -1,0 +1,45 @@
+extends layout_NL
+
+block content
+  div.well
+    table
+      tr
+        td
+          div Ingelogd als : #{userName}
+          div Vraag : #{questionNr} / #{amtQuestions}
+        td
+      tr
+        td
+        td(align='right')
+          a(href='/editQuestion?nr=' + (questionNr-2))
+            img.padded-under2(src='/images/previous.png', title='Vorige')
+          a(href='/editQuestion?nr=' + questionNr)
+            img.padded-under2(src='/images/next.png', title='Volgende')
+      tr
+        td
+          label Opgave tekst :
+            textarea#msgEditor(rows='3', cols='98') #{edit_msg}
+        td  
+      tr
+        td
+          label Opgave code :
+        td
+          label Correcte code :
+      tr
+        td
+          textarea#codeEditor1 #{code1}
+        td
+          textarea#codeEditor2 #{code2}
+      tr
+        td
+          label.padded-right Verwacht resultaat :  
+            input(type='text', id='result', size=35, value=result)
+        td
+      tr
+      tr
+        td
+        td(align='right')
+          img.pointer(onclick='mycroft.delete(' + (questionNr-1) + ');', src='/images/delete.png', title='Verwijderen')
+          img.pointer(onclick='mycroft.save(' + (questionNr-1) + ');', src='/images/eval.png', title='Opslaan')
+  script(src='/javascripts/codemirror-compressed.js')
+  script(src='/javascripts/mycroftAdmin.js')

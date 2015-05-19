@@ -1,0 +1,24 @@
+extends layout_NL
+
+block content
+  div.well
+    table.notspaced
+      tr
+        td 
+          div Ingelogd als : #{userName}
+    br
+    br
+    table.notspaced
+      tr
+        td
+          div Score : #{percent} %
+      tr
+        td
+      tr
+        each check, i in checks
+          tr
+            td 
+              a(href='/question?nr=' + i + '&eval=0') 
+                div Vraag #{i+1} : #{check.result}
+            td
+      

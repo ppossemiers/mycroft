@@ -1,0 +1,21 @@
+extends layout_NL
+
+block content
+  div.well
+    table.notspaced
+      tr
+        td 
+          div Ingelogd als : #{userName}
+    br
+    br
+    table.notspaced
+      tr
+        td
+      tr
+        each question, i in questions
+          tr
+            td 
+              a(href='/editQuestion?nr=' + i) 
+                div Vraag #{question.value.nr} : #{question.value.msg_NL}
+            td
+      

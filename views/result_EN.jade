@@ -1,0 +1,24 @@
+extends layout_EN
+
+block content
+  div.well
+    table.notspaced
+      tr
+        td 
+          div User name : #{userName}
+    br
+    br
+    table.notspaced
+      tr
+        td
+          div Score : #{percent} %
+      tr
+        td
+      tr
+        each check, i in checks
+          tr
+            td 
+              a(href='/question?nr=' + i + '&eval=0') 
+                div Question #{i+1} : #{check.result}
+            td
+      

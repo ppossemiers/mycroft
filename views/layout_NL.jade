@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title='Mycroft 0.9'
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/codemirror.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  img.padded-under(src='/images/logo.png')
+  body
+    if error
+      div(class='alert alert-danger', id='error') #{error}
+    if msg
+      div(class='alert alert-success', id='msg') #{msg}
+    div(id='anchor')
+    block content
+    small
+      a.padded-left-right(href='/changePassword') Verander paswoord
+      a.padded-left-right(href='/result') Overzicht
+      if !questionNr && !userName
+        a.padded-left-right(href='/logout') Login
+      else
+        a.padded-left-right(href='/logout') Logout
+      

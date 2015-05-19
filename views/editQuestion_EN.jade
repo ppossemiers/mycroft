@@ -1,0 +1,45 @@
+extends layout_EN
+
+block content
+  div.well
+    table
+      tr
+        td
+          div User name : #{userName}
+          div Question : #{questionNr} / #{amtQuestions}
+        td
+      tr
+        td
+        td(align='right')
+          a(href='/editQuestion?nr=' + (questionNr-2))
+            img.padded-under2(src='/images/previous.png', title='Previous')
+          a(href='/editQuestion?nr=' + questionNr)
+            img.padded-under2(src='/images/next.png', title='Next')
+      tr
+        td
+          label Message :
+            textarea#msgEditor(rows='3', cols='98') #{edit_msg}
+        td  
+      tr
+        td
+          label Assignment code :
+        td
+          label Correct code :
+      tr
+        td
+          textarea#codeEditor1 #{code1}
+        td
+          textarea#codeEditor2 #{code2}
+      tr
+        td
+          label.padded-right Expected result :  
+            input(type='text', id='result', size=35, value=result)
+        td
+      tr
+      tr
+        td
+        td(align='right')
+          img.pointer(onclick='mycroft.delete(' + (questionNr-1) + ');', src='/images/delete.png', title='Delete')
+          img.pointer(onclick='mycroft.save(' + (questionNr-1) + ');', src='/images/eval.png', title='Save')
+  script(src='/javascripts/codemirror-compressed.js')
+  script(src='/javascripts/mycroftAdmin.js')
