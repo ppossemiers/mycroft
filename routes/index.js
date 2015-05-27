@@ -24,8 +24,20 @@ router.get('/login', function(req, res){
 
 /* GET logout page. */
 router.get('/logout', function(req, res){
-  if(!req.session.user_name){ res.redirect('/login'); }
-  else if(!req.session.checks){ res.redirect('/login'); }
+  if(!req.session.user_name){
+   delete req.session.user_name;
+   delete req.session.allQuestions;
+   delete req.session.theQuestion;
+   delete req.session.test;
+   res.redirect('/login');
+  }
+  else if(!req.session.checks){
+   delete req.session.user_name;
+   delete req.session.allQuestions;
+   delete req.session.theQuestion;
+   delete req.session.test;
+   res.redirect('/login');
+  }
   else if(req.session.admin){
     delete req.session.admin;
     res.redirect('/login');
@@ -35,13 +47,23 @@ router.get('/logout', function(req, res){
       if(!body.rows[0]){
         var result = helper.calculateResult(req);
         db.insert(result);
+        delete req.session.user_name;
+        delete req.session.allQuestions;
+        delete req.session.theQuestion;
+        delete req.session.test;
         res.render('blank_' + req.session.lang, { message: helper.getTranslation('save', req.session.lang) });
       }
-      else{ res.redirect('/login'); }
-      delete req.session.user_name;
+      else{
+       delete req.session.user_name;
+       delete req.session.allQuestions;
+       delete req.session.theQuestion;
+       delete req.session.test;
+       res.redirect('/login');
+      }
+      /*delete req.session.user_name;
       delete req.session.allQuestions;
       delete req.session.theQuestion;
-      delete req.session.test;
+      delete req.session.test;*/
     });
   }
 });
@@ -204,8 +226,9 @@ router.get('/question', function(req, res){
               case 'TryStatement':
                 break;
               case 'FunctionDeclaration':
-                var elem = _.find(arr2, function(e){ if(e.type == 'FunctionDeclaration'){ return e.id.name == arr1[i].id.name; } });
-                if(helper.isEqual(arr1[i], elem) == false){ evalResult = false; }
+                var elem = _.find(arr2, function(e){ if(e.type == 'FunctionDeclaration'){ return e.id.name == arr1[i].id.name; }});
+                if(helper.isEqual(arr1[i], elem) == false){
+                 evalResult = false; }
                 break;
               case 'VariableDeclaration':
                 break;
@@ -335,7 +358,7 @@ router.get('/result', function(req, res){
   if(helper.preCheck(req, res) === false){ return; }
   if(!req.session.admin){
     var result = helper.calculateResult(req);
-	  res.render('result_' + req.session.lang, { userName: req.session.user_name, percent: result.percent, checks: result.checks });
+	   res.render('result_' + req.session.lang, { userName: req.session.user_name, percent: result.percent, checks: result.checks });
   }
   else{
     res.render('overview_' + req.session.lang, { userName: req.session.user_name, questions: req.session.allQuestions });
